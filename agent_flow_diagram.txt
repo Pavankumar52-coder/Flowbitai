@@ -1,0 +1,29 @@
+             |File Upload API|
+
+                    |
+                    v
+    
+      |     Classifier Agent        |
+      |  (detects file format + intent)   |
+
+                    |           
+                    v           
+   
+   | 1. PDFAgent  | | 2.JSONAgent | | 3. EmailAgent  |
+   
+                    |           
+                    v           
+
+     |  Action Router(action suggestion)   |
+     | (Decide endpoint to trigger)        |
+     
+                    |
+                    v
+        
+        |  Trigger POST to endpoint   |
+        
+                    |
+                    v
+     
+     | Store result in memory (/memory) |
+     
