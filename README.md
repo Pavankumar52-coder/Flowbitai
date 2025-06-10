@@ -17,3 +17,8 @@ ClassifierAgent: Uses file extension/content to detect format and risk intent.
 PDFAgent: Parses the text present in the pdf.
 JSONAgent: Validates fraud-alert schema through text present in json format.
 EmailAgent: Extracts metadata & threat intent through emails.
+
+# AI Agent Running:
+1. run 'docker-compose build --no-cache' in terminal.
+2. run 'docker-compose up'.
+3. open the api link(https://localhost:8000/docs) present in terminal.
