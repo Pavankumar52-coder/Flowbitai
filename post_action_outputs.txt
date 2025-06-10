@@ -1,0 +1,186 @@
+For test1 input pdf the output is:
+{
+  "source": "test_suspicious_login.pdf",
+  "timestamp": "2025-06-10T17:16:28.977841",
+  "classification": {
+    "format": "pdf",
+    "intent": "Fraud Risk"
+  },
+  "agent_result": {
+    "success": true,
+    "extracted_text_snippet": "Suspicious login attempt from unknown IP address detected on 2025-06-01.\nAlert level: high.\n",
+    "extracted_data": {
+      "compliance_keywords": [
+        "Fraud/Suspicious Activity"
+      ]
+    },
+    "flags": [
+      "Potential Fraud Risk"
+    ],
+    "suggested_action": "compliance review",
+    "type": "policy/compliance"
+  },
+  "action_triggered": [
+    {
+      "POST": "/risk_alert/fraud_investigation",
+      "payload": {
+        "document_info": "Suspicious login attempt from unknown IP address detected on 2025-06-01.\nAlert level: high.\n"
+      }
+    }
+  ],
+  "decision_trace": {
+    "classifier": {
+      "format": "pdf",
+      "intent": "Fraud Risk"
+    },
+    "pdf_agent_output": {
+      "success": true,
+      "extracted_text_snippet": "Suspicious login attempt from unknown IP address detected on 2025-06-01.\nAlert level: high.\n",
+      "extracted_data": {
+        "compliance_keywords": [
+          "Fraud/Suspicious Activity"
+        ]
+      },
+      "flags": [
+        "Potential Fraud Risk"
+      ],
+      "suggested_action": "compliance review",
+      "type": "policy/compliance"
+    },
+    "routed_actions": [
+      {
+        "POST": "/risk_alert/fraud_investigation",
+        "payload": {
+          "document_info": "Suspicious login attempt from unknown IP address detected on 2025-06-01.\nAlert level: high.\n"
+        }
+      }
+    ]
+  }
+}
+
+
+
+For test1 json input file the output is:
+{
+  "source": "test1.json",
+  "timestamp": "2025-06-10T18:11:17.846053",
+  "classification": {
+    "format": "json",
+    "intent": "Fraud Risk"
+  },
+  "agent_result": {
+    "valid": false,
+    "anomalies": [
+      "Missing required field: 'payload'"
+    ],
+    "parsed_data": {
+      "id": "12345",
+      "timestamp": "2025-06-01T10:00:00Z",
+      "type": "fraud_alert",
+      "details": "Suspicious login attempt from unknown IP"
+    },
+    "suggested_action": "log alert"
+  },
+  "action_triggered": [
+    {
+      "POST": "/risk_alert/json_anomaly",
+      "payload": {
+        "anomalies": [
+          "Missing required field: 'payload'"
+        ],
+        "data_snippet": {
+          "id": "12345",
+          "timestamp": "2025-06-01T10:00:00Z",
+          "type": "fraud_alert",
+          "details": "Suspicious login attempt from unknown IP"
+        }
+      }
+    }
+  ],
+  "decision_trace": {
+    "classifier": {
+      "format": "json",
+      "intent": "Fraud Risk"
+    },
+    "json_agent_output": {
+      "valid": false,
+      "anomalies": [
+        "Missing required field: 'payload'"
+      ],
+      "parsed_data": {
+        "id": "12345",
+        "timestamp": "2025-06-01T10:00:00Z",
+        "type": "fraud_alert",
+        "details": "Suspicious login attempt from unknown IP"
+      },
+      "suggested_action": "log alert"
+    },
+    "routed_actions": [
+      {
+        "POST": "/risk_alert/json_anomaly",
+        "payload": {
+          "anomalies": [
+            "Missing required field: 'payload'"
+          ],
+          "data_snippet": {
+            "id": "12345",
+            "timestamp": "2025-06-01T10:00:00Z",
+            "type": "fraud_alert",
+            "details": "Suspicious login attempt from unknown IP"
+          }
+        }
+      }
+    ]
+  }
+}
+Response headers
+
+
+
+for test1 email input the output is:
+{
+  "source": "email_test1.eml",
+  "timestamp": "2025-06-10T18:12:41.441471",
+  "classification": {
+    "format": "email",
+    "intent": "Unknown"
+  },
+  "agent_result": {
+    "sender": "support@banksecure.ai",
+    "urgency": "high",
+    "tone": "polite",
+    "suggested_action": "escalate to CRM",
+    "issue_request": "From: support@banksecure.ai\r\nTo: user@example.com\r\nSubject: Action Required: Suspicious Login Attempt Detected\r\n\r\nDear Customer,\r\n\r\nWe’ve detected a login attempt from an unknown device and location:\r\n- Location: Frankfurt, Germany\r\n- IP Address: 185.23.44.121\r\n- Time: 2:43 PM IST\r\n\r\nIf this wasn’t you, please secure your account immediately or contact support.\r\n\r\nThank you,  \r\nBankSecure AI Alert System"
+  },
+  "action_triggered": [
+    {
+      "POST": "/crm/escalate",
+      "payload": {
+        "sender": "support@banksecure.ai",
+        "issue": "From: support@banksecure.ai\r\nTo: user@example.com\r\nSubject: Action Required: Suspicious Login Attempt Detected\r\n\r\nDear Customer,\r\n\r\nWe’ve detected a login attempt from an unknown device and location:\r\n- Location: Frankfurt, Germany\r\n- IP Address: 185.23.44.121\r\n- Time: 2:43 PM IST\r\n\r\nIf this wasn’t you, please secure your account immediately or contact support.\r\n\r\nThank you,  \r\nBankSecure AI Alert System"
+      }
+    }
+  ],
+  "decision_trace": {
+    "classifier": {
+      "format": "email",
+      "intent": "Unknown"
+    },
+    "email_agent_output": {
+      "sender": "support@banksecure.ai",
+      "urgency": "high",
+      "tone": "polite",
+      "suggested_action": "escalate to CRM",
+      "issue_request": "From: support@banksecure.ai\r\nTo: user@example.com\r\nSubject: Action Required: Suspicious Login Attempt Detected\r\n\r\nDear Customer,\r\n\r\nWe’ve detected a login attempt from an unknown device and location:\r\n- Location: Frankfurt, Germany\r\n- IP Address: 185.23.44.121\r\n- Time: 2:43 PM IST\r\n\r\nIf this wasn’t you, please secure your account immediately or contact support.\r\n\r\nThank you,  \r\nBankSecure AI Alert System"
+    },
+    "routed_actions": [
+      {
+        "POST": "/crm/escalate",
+        "payload": {
+          "sender": "support@banksecure.ai",
+          "issue": "From: support@banksecure.ai\r\nTo: user@example.com\r\nSubject: Action Required: Suspicious Login Attempt Detected\r\n\r\nDear Customer,\r\n\r\nWe’ve detected a login attempt from an unknown device and location:\r\n- Location: Frankfurt, Germany\r\n- IP Address: 185.23.44.121\r\n- Time: 2:43 PM IST\r\n\r\nIf this wasn’t you, please secure your account immediately or contact support.\r\n\r\nThank you,  \r\nBankSecure AI Alert System"
+        }
+      }
+    ]
+  }
+}
